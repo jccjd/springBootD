@@ -31,8 +31,13 @@ public class AreaDaoTest {
 	}
 
 	@Test
-	public void testBInsertArea() {
-		//创建一个区域对象
+	public void insertArea() {
+		Area area = new Area();
+		area.setAreaName("南苑");
+		area.setPriority(1);
+		int effectedNum = areaDao.insertArea(area);
+		assertEquals(1,effectedNum);
+		/*	//创建一个区域对象
 		Area area = new Area();
 		area.setAreaName("测试区域");
 		area.setCreateTime(new Date());
@@ -44,6 +49,7 @@ public class AreaDaoTest {
 		//校验总数是否+1
 		List<Area> areaList = areaDao.queryArea();
 		assertEquals(3, areaList.size());
+*/
 	}
 
 	@Test
@@ -54,21 +60,20 @@ public class AreaDaoTest {
 
 	@Test
 	public void testDUpateArea() {
-		List<Area> areaList = areaDao.queryArea();
-		for (Area area : areaList) {
-			if ("测试区域".equals(area.getAreaName())) {
-				// 对比之前的priority值
-				assertEquals(1, area.getPriority().intValue());
-				area.setPriority(2);
-				int effectedNum = areaDao.updateArea(area);
-				assertEquals(1, effectedNum);
-			}
-		}
+		Area area = new Area();
+		area.setAreaName("西苑");
+		area.setAreaId(5);
+		area.setLastEditTime(new Date());
+		int effectedNum = areaDao.updateArea(area);
+		assertEquals(1,effectedNum);
+
 	}
 
 	@Test
 	public void testEDeleteArea() {
-		List<Area> areaList = areaDao.queryArea();
+		int effectedNum = areaDao.deleteArea(5);
+		/*List<Area> areaList = areaDao.queryArea();
+
 		for (Area area : areaList) {
 			if ("测试区域".equals(area.getAreaName())) {
 				int effectedNum = areaDao.deleteArea(area.getAreaId());
@@ -77,6 +82,7 @@ public class AreaDaoTest {
 		}
 		// 重新获取一次列表，看看总数是否少1
 		areaList = areaDao.queryArea();
-		assertEquals(2, areaList.size());
+		assertEquals(2, areaList.size());*/
+
 	}
 }
