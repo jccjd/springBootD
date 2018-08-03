@@ -72,6 +72,12 @@ public class AreaController {
         modelMap.put("success",areaService.modifyArea(area));
         return modelMap;
     }
+    @RequestMapping(value = "/removearea", method = RequestMethod.GET)
+    private Map<String,Object> removearea(Integer  areaId) {
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("success",areaService.deleteArea(areaId));
+        return modelMap;
+    }
 
 
 
